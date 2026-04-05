@@ -1,5 +1,6 @@
 import streamlit as st
 from src.oxylabs_client import scrape_product_details
+from src.services import scrape_and_store_product
 
 def render_header():
     st.title("Amazon Web Scrapper")
@@ -51,8 +52,8 @@ def main():
     
     if st.button("Scrape Product") and asin:
         with st.spinner("Scraping product information..."):
-            product = scrape_product_details(asin, geo, domain)
-        st.success("Product information scraped successfully!")
+            product = scrape_and_store_product(asin, geo, domain)
+        st.success("Product information scraped and stored successfully!")
         render_product_card(product)
 
 if __name__ == "__main__":
