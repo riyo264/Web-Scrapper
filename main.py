@@ -2,6 +2,7 @@ import streamlit as st
 from src.oxylabs_client import scrape_product_details
 from src.services import fetch_and_store_competitors, scrape_and_store_product
 from src.db import Database
+from src.llm import analyze_competitors
 
 def render_header():
     st.title("Amazon Web Scrapper")
@@ -102,7 +103,8 @@ def main():
         with col1:
             if st.button("Analyze with LLM", type="primary"):
                 with st.spinner("Running LLM..."):
-                    st.text("analysis")
+                    analysis = analyze_competitors(selected_asin)
+                    st.markdown(analysis)
 
 if __name__ == "__main__":
     main()
