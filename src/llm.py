@@ -39,7 +39,8 @@ def format_competitor(db, parent_asin):
 
 
 def analyze_competitors(asin):
-    from langchain_openai import ChatOpenAI
+    # from langchain_openai import ChatOpenAI (Can't use due to token limits)
+    from langchain_groq import ChatGroq
     from langchain_core.prompts import PromptTemplate
     from langchain_core.output_parsers import PydanticOutputParser
 
@@ -60,7 +61,9 @@ def analyze_competitors(asin):
         "Amazon Domain: {amazon_domain}\n\n"
         "Competitors (JSON): {competitors}\n\n"
         "IMPORTANT: All prices should be considered with their correct currency symbol. "
-        "When comparing prices, ensure you're using the same currency context.\n\n"
+        "When comparing prices, ensure you're using the same currency context.\n"
+        "CRITICAL: You must generate ACTUAL analysis data populating the JSON structure below. "
+        "DO NOT just repeat the schema back to me.\n\n"
         "{format_instructions}"
     )
 
@@ -69,7 +72,7 @@ def analyze_competitors(asin):
         partial_variables={"format_instructions": parser.get_format_instructions()}
     )
 
-    llm = ChatOpenAI(model="gpt-4", temperature=0)
+    llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0)
 
     chain = prompt | llm | parser
 
@@ -91,7 +94,7 @@ def analyze_competitors(asin):
     ]
     for c in result.top_competitors:
         pts = "; ".join(c.key_points) if c.key_points else ""
-        currency  = c.currency if c.curreny else ""
+        currency  = c.currency if c.currency else ""
         price_str = f"{currency} {c.price}" if c.price else f"${c.price}"
         lines.append(f"- {c.asin} | {c.title} | {price_str} | {c.rating} | {pts}")
 

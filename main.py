@@ -87,7 +87,7 @@ def main():
         existing_comps = db.search_products({"parent_asin": selected_asin})
 
         if not existing_comps:
-            with st.spinner("Seartching..."):
+            with st.spinner("Searching..."):
                 comps = fetch_and_store_competitors(selected_asin, domain, geo)
             st.success(f"Found {len(comps)} competitors.")
         else:
