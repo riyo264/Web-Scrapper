@@ -1,7 +1,6 @@
 # Web-Scrapper: Amazon Market Intelligence Tool
 This repository contains a specialized Amazon Market Analysis & Competitor Intelligence tool. Built with Python and Streamlit, it leverages the Oxylabs Real-Time Scraper API to extract product data and utilizes OpenAI's GPT-4 to provide strategic market positioning and pricing recommendations.
 
-<br>
 
 # 🚀 Key Features
 - Targeted Scraping: Extract detailed product information (price, rating, stock, images) using an Amazon ASIN, specific Geo-location (Zip Code), and Domain.
@@ -15,7 +14,6 @@ This repository contains a specialized Amazon Market Analysis & Competitor Intel
 
 - Local Data Persistence: Uses TinyDB for a lightweight, document-oriented local database to store scraped results and avoid redundant API calls.
 - Streamlit UI: A clean, multi-page web interface for managing scraped products and triggering deep-dive analyses.
-<br>
 
 # 🛠️ Tech Stack
   - Frontend: Streamlit
@@ -25,7 +23,6 @@ This repository contains a specialized Amazon Market Analysis & Competitor Intel
   - Database: TinyDB
   - Language: Python 3.12
 
-<br> 
 
 # 🚦 Getting Started
 **1. Prerequisites**
@@ -53,14 +50,14 @@ Rename `.env.example` to `.env` and fill in your credentials:
 ```
 streamlit run main.py
 ```
-<br>
+
 
 # 📖 Usage Guide
   - **Scrape Product**: Enter a target ASIN, specify the Zip Code (for localized pricing), and select the Domain (e.g., .in for India, .com for US).
   - **Browse Inventory**: View your local database of scraped products in the "Scraped Products" gallery.
   - **Find Competitors**: Click "Start analyzing competitors" on a product card to trigger a multi-strategy search for similar listings.
   - **AI Analysis**: Click "Analyze with LLM" to send the consolidated product and competitor data to GPT-4 for a professional market report.
-<br>
+
 
 # ⚠️ Disclaimer
 This tool is for educational and research purposes. Please ensure your scraping activities comply with Amazon's Terms of Service and Oxylabs' usage policies.
